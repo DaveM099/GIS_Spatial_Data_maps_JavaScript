@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>GIS Maps</title>
+    <link rel="stylesheet" type="text/css" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/CSS/website001.css" />
+
+    <link rel="icon" type="image/x-icon" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/map.png" />
+</head>
+
+<body>
+    <!--start of header-->
+    <header id="header">
+        <div class="wrap">
+            <div id="logo">
+                <span class="gear">S</span>
+                <h3>MAPS</h3>
+            </div>
+
+            
+        </div>
+
+    </header>
+    <!--End of header-->
+
+
+    <section class="wrap">
+
+        <!--Start of Banner-->
+        <section id="info">
+            <div id="Banner">
+                <h1>
+                    Gis And The Spatial Web (IS3S665) 
+                </h1>
+            </div>
+            <!--End of Banner-->
+
+            <!--Start of Cards-->
+            <div id="card">
+                <a href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/BCN.html">
+                    <div class=".card_img">
+                        <img src="https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/map.png" alt="map_icon">
+                    </div>
+                    <h2 class="category">Barcelona (Google map)</h2>
+                    <p class="description">
+                        This map features a google map with customised markers of barcelona attractions with infowindows, polyline with distance calculation below, and event listeners to span back to center after 5 seconds.
+                    </p>
+                </a>
+                
+            </div>
+
+            <div id="card">
+                <a href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/BCN_Mod.html">
+                    <div class=".card_img">
+                        <img src="https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/map.png" alt="map_icon">
+                    </div>
+                    <h2 class="category"> Barcelona 2.0</h2>
+                    <p class="description">
+                        This map features a modified style google map of Barcelona , and event listeners that spans it back to centre of map  after 3 seconds of being moved.
+                    </p>
+                </a>
+                
+            </div>
+
+            <div id="card">
+                <a href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/ESP.html">
+                    <div class=".card_img">
+                        <img src="https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/map.png" alt="map_icon">
+                    </div>
+                    <h2 class="category"> Spain_Polygon</h2>
+                    <p class="description">
+                        This map features event listerners and bounds to limit the google map to just Spain, with a polygon between 3 spanish airports.
+                </a>
+                
+            </div>
+
+            <div id="card">
+                <a href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/Madrid.html">
+                    <div class=".card_img">
+                        <img src="https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/map.png" alt="map_icon">
+                    </div>
+                    <h2 class="category"> KML Maps</h2>
+                    <p class="description">
+                        This map features 2 google maps, one of Madrid and another from the Uk, both of these read data from an external KML file.
+                    </p>
+                </a>
+                
+            </div>
+
+            <div id="card">
+                <a href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/bing.html">
+                    <div class=".card_img">
+                        <img src="https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/map.png" alt="map_icon">
+                    </div>
+                    <h2 class="category"> BCN Bing</h2>
+                    <p class="description">
+                        This features a bing map with pushpins with infoboxes, and a polyline.
+                    </p>
+                </a>
+            </div>
+
+            <div id="card">
+                <a href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/SpainGeo.html">
+                    <div class=".card_img">
+                        <img src="https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/map.png" alt="map_icon">
+                    </div>
+                    <h2 class="category"> Bing GeoJson</h2>
+                    <p class="description">
+                        This features a bing map with custom made GeoJson showing pushpins of Airports in spain and a polygon of portugal.
+                    </p>
+                </a>
+            </div>
+            <!--End of Cards-->
+
+        </section>
+        
+        <!--Start of Main Content-->
+        <section id="articles">
+            <div class="clearfix"></div>
+
+            
+
+            <article>
+                
+                <h4>
+                    Site Summary:
+                </h4>
+                <p>
+                    My site includes five google maps(Barcelona, Barcelona2.0, Spain_Polygon, KML Maps) and two bing maps(BCN Bing and bing GeoJson).  Each map is contained in a card which functions as a link to where you can find the map and the code, and includes a small description of its features.
+                    The google maps feature: Polylines, infoWindows, polygons, event listeners, and markers.  The Barcelona map additonally includes event listeners to span back to centre of map after 5 seconds of being moved, and its polyline calculates the distance between the Airport and the Sagrada familia.  In the modified Barcelona 2.0 the styling has been changed and features event listeners to span the map back to the center of Barcelona after 3 seconds of being moved.  In the Spain_Polygon you can find event listerners and bounds to limit the google map to just Spain, with a polygon between 3 spanish airports/ markers with infowindows..  Research was undertaken to find appropiate KML files of Spain, in the Madrid KML link it features a google map showing the bicycle parking areas of the city.  This was read from an external KML file found on a spanish goverment website called datos.gob.es at https://datos.gob.es/en/sector/medio-ambiente.
+
+                </p>
+                <p>
+                    On the Bing maps you can find customised pushpins of the Airport and the sagrada familia with a custom styles polyline in between them.  This map also features infoboxes that appear in the center of the map when a pushpin is clicked with the help of events handlers.
+
+                    The Spain GeoJson map was created using the custom made GeoJson online and then parsed into the Bing Api, showing some of the major aiports in Spain as well as a polygon of Portugal.
+                </p>
+
+                <p>
+                    All the icons were handpicked and download from a free image source at https://www.flaticon.com/
+                </p>
+            </article>
+
+         
+           
+        </section>
+        <!--End of Main Content-->
+    </section>
+
+    <!--Start of Footer-->
+    <div class="clearfix"></div>
+    <footer id="footer">
+        <div class="wrap">
+
+            <div id="dev">
+                <h5>AUTHOR</h5>
+                <p id="copy">&copy; David Thompson-Student Id: 30047616-BSc Computing</p>
+            </div>
+        </div>
+    </footer>
+    <!--End of Footer-->
+
+
+
+</body>
+
+</html>

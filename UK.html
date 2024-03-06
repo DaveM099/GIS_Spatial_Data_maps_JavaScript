@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2>Snowdonia Map: postcodes</h2>
+    <div id="map_space"
+        style="width: 60%; height:600px; background-color: rgb(52, 173, 221); border: 8px solid blue; margin-left: 5px;">
+    </div>
+    <div id="msg"></div>
+    <a class="return" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/website001.html">Back to Site</a>
+
+    <script>
+
+        function createMarker(point, icon, info, map) {
+            var markerOpts = {
+                position: point,
+                icon: icon,
+                map: map
+            };
+            var marker = new google.maps.Marker(markerOpts);
+
+            var infoWindowOpts = { content: info };
+            var infoWindow = new google.maps.InfoWindow(infoWindowOpts);
+            google.maps.event.addListener(marker, 'click', function () {
+                infoWindow.open(map, marker);
+            });
+        }
+
+        var marker = new google.maps.Marker(markerOpts);
+        function draw_map() {
+            /* This creates a JS variable called theMap*/
+            var theMap = new google.maps.Map(document.getElementById("map_space"), {
+                center: new google.maps.LatLng(57.082783, 2.442269), /*Center specifies the location of the map using latitud and longitud for the new good map. currently sowing a location in Wales*/
+                zoom: 4,
+
+                mapTypeId: google.maps.MapTypeId.ROADMAP, /* Defines the type of map. In this case it is defining it a a google map*/
+
+            });
+
+
+
+            //Open layers KML file.  Built-up areas of 2022 Uk. retrieved from https://www.doogal.co.uk/NationalParks?park=W18000003
+            var src = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/Snowdonia%20National%20Park%20postcodes.kml';
+            var kmlLayer = new google.maps.KmlLayer(src, { map: theMap });
+
+
+        
+           
+
+
+
+
+        }
+
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDotQOsRoXo24UyVNWTVE92XyodSZOgYv4&callback=draw_map"></script>
+
+</body>
+
+</html>

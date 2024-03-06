@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>GIS Maps</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/CSS/website001.css" />
+
+    <link rel="icon" type="image/x-icon" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/map.png" />
+</head>
+
+<body>
+
+    <h2>Madrid Map: Bicycle parking areas </h2>
+    <a class="return" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/website001.html">Back to Site</a>
+    <div id="map_space"
+        style="width: 60%; height:600px; background-color: rgb(52, 173, 221); border: 8px solid blue; margin-left: 5px;">
+    </div>
+    <a href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/Madrid03.html">If the map does not load. click
+        here</a>
+    <div id="msg"></div><br>
+    <section id="articles">
+        <div class="clearfix"></div>
+
+
+
+        <article id="feature">
+
+            <h4>
+                Map Features:
+            </h4>
+            <p>
+                Research was undertaken to find appropiate KML files of Spain, in the Madrid KML link it features a
+                google map showing the bicycle parking areas of the city. This was read from an external KML file found
+                on a spanish goverment website called datos.gob.es at https://datos.gob.es/en/sector/medio-ambiente.
+
+            <pre>
+
+                    <code>
+                        function createMarker(point, icon, info, map) {
+                            var markerOpts = {
+                                position: point,
+                                icon: icon,
+                                map: map
+                            };
+                            var marker = new google.maps.Marker(markerOpts);
+                
+                            var infoWindowOpts = { content: info };
+                            var infoWindow = new google.maps.InfoWindow(infoWindowOpts);
+                            google.maps.event.addListener(marker, 'click', function () {
+                                infoWindow.open(map, marker);
+                            });
+                        }
+                
+                        var marker = new google.maps.Marker(markerOpts);
+                        function draw_map() {
+                            /* This creates a JS variable called theMap*/
+                            var theMap = new google.maps.Map(document.getElementById("map_space"), {
+                                center: new google.maps.LatLng(57.070202, 2.558008), /*Center specifies the location of the map using latitud and longitud for the new good map. currently sowing a location in Wales*/
+                                zoom: 12,
+                                maxZoom: 18,
+                                minZoom: 4,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP, /* Defines the type of map. In this case it is defining it a a google map*/
+                
+                            });
+                            
+                            //Open layers KML file.  2021 Bicycle parking areas of Madrid. retrieved from: https://datos.gob.es/en/sector/medio-ambiente
+                            var src = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/APARCABICIS_2021.kml';
+                            var kmlLayer = new google.maps.KmlLayer(src, { map: theMap });
+                
+                
+                
+                
+                   
+                            // Save the original center
+                            var Center = themap.getCenter();
+                
+                            theMap.addListener("center_changed", () => {
+                                // pan back after 3 seconds of center being changed
+                                window.setTimeout(() => {
+                                    theMap.panTo(Center);
+                                }, 3000);
+                            });
+                
+                    </code>
+                </pre>
+
+
+
+            </p>
+        </article>
+    </section>
+
+    <div id="map_space02"
+        style="width: 60%; height:600px; background-color: rgb(52, 173, 221); border: 8px solid blue; margin-left: 5px;">
+    </div>
+    <a href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/UK.html">If the map does not load. click
+        here</a>
+  
+
+    <section id="articles">
+        <div class="clearfix"></div>
+
+
+
+        <article id="feature">
+
+            <h4>
+                Map Features:
+            </h4>
+            <p>
+                Research was undertaken to find appropiate KML files of UK, featuring a map of the postcodes in
+                Snowdonia. retrieved from:https://www.doogal.co.uk/NationalParks?park=W18000003
+
+            <pre>
+
+                    <code>
+                        function draw_map02() {
+                            /* This creates a JS variable called theMap*/
+                            var theMap02 = new google.maps.Map(document.getElementById("map_space02"), {
+                                center: new google.maps.LatLng(57.082783, 2.442269), /*Center specifies the location of the map using latitud and longitud for the new good map. currently sowing a location in Wales*/
+                                zoom: 4,
+                
+                                mapTypeId: google.maps.MapTypeId.ROADMAP, /* Defines the type of map. In this case it is defining it a a google map*/
+                
+                            });
+                
+                
+                
+                            //Open layers KML file.  Built-up areas of 2022 Uk. retrieved from https://www.doogal.co.uk/NationalParks?park=W18000003
+                            var src = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/Snowdonia%20National%20Park%20postcodes.kml';
+                            var kmlLayer = new google.maps.KmlLayer(src, { map: theMap02 });
+                
+                
+                        
+                           
+                
+                
+                
+                
+                        }
+                
+                    </script>
+                
+                    </code>
+                </pre>
+
+
+
+            </p>
+        </article>
+    </section>
+
+    <script>
+
+        function createMarker(point, icon, info, map) {
+            var markerOpts = {
+                position: point,
+                icon: icon,
+                map: map
+            };
+            var marker = new google.maps.Marker(markerOpts);
+
+            var infoWindowOpts = { content: info };
+            var infoWindow = new google.maps.InfoWindow(infoWindowOpts);
+            google.maps.event.addListener(marker, 'click', function () {
+                infoWindow.open(map, marker);
+            });
+        }
+
+        var marker = new google.maps.Marker(markerOpts);
+        function draw_map() {
+            /* This creates a JS variable called theMap*/
+            var theMap = new google.maps.Map(document.getElementById("map_space"), {
+                center: new google.maps.LatLng(57.070202, 2.558008), /*Center specifies the location of the map using latitud and longitud for the new good map. currently sowing a location in Wales*/
+                zoom: 12,
+                maxZoom: 18,
+                minZoom: 4,
+                mapTypeId: google.maps.MapTypeId.ROADMAP, /* Defines the type of map. In this case it is defining it a a google map*/
+
+            });
+
+            //Open layers KML file.  2021 Bicycle parking areas of Madrid. retrieved from: https://datos.gob.es/en/sector/medio-ambiente
+            var src = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/APARCABICIS_2021.kml';
+            var kmlLayer = new google.maps.KmlLayer(src, { map: theMap });
+
+
+
+
+
+            // Save the original center
+            var Center = themap.getCenter();
+
+            theMap.addListener("center_changed", () => {
+                // pan back after 3 seconds of center being changed
+                window.setTimeout(() => {
+                    theMap.panTo(Center);
+                }, 3000);
+            });
+
+
+
+
+
+
+        }
+        function draw_map02() {
+            /* This creates a JS variable called theMap*/
+            var theMap02 = new google.maps.Map(document.getElementById("map_space02"), {
+                center: new google.maps.LatLng(57.082783, 2.442269), /*Center specifies the location of the map using latitud and longitud for the new good map. currently sowing a location in Wales*/
+                zoom: 4,
+
+                mapTypeId: google.maps.MapTypeId.ROADMAP, /* Defines the type of map. In this case it is defining it a a google map*/
+
+            });
+
+
+
+            //Open layers KML file.  Built-up areas of 2022 Uk. retrieved from https://www.doogal.co.uk/NationalParks?park=W18000003
+            var src = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/Snowdonia%20National%20Park%20postcodes.kml';
+            var kmlLayer = new google.maps.KmlLayer(src, { map: theMap02 });
+
+
+
+
+
+
+
+
+        }
+
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDotQOsRoXo24UyVNWTVE92XyodSZOgYv4&callback=draw_map"></script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDotQOsRoXo24UyVNWTVE92XyodSZOgYv4&callback=draw_map02"></script>
+
+</body>
+
+</html>

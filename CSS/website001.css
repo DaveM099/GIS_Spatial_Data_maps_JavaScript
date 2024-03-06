@@ -1,0 +1,551 @@
+/*Fonts*/
+@font-face{
+    font-family: "TrebuchetMS";
+    src: url("fonts/TrebuchetMS.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: "BebasNeue";
+    src: url("fonts/BebasNeue.otf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: "WebSymbolsRegular";
+    src:url("fonts/websymbols-regular-webfont.eot");
+    src:url("fonts/websymbols-regular-webfont.eot?#iefix") format("embedded-opentype"),
+        url("fonts/websymbols-regular-webfont.svg") format("svg"),
+        url("fonts/websymbols-regular-webfont.woff") format("woff"),
+        url("fonts/websymbols-regular-webfont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*General styles*/
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-image: url(https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/pattern.png);
+}
+
+.wrap{
+    width:1200px;
+    margin:0px auto;
+}
+.gear, .icon{
+    font-family: WebSymbolsRegular;
+}
+
+.clearfix{
+    clear:both;
+    float: none;
+}
+
+.scroll {
+    border: 1px solid black;
+    width: 600px;
+    height: 600px;
+    overflow: scroll;
+}
+
+
+
+
+a{
+    text-decoration: none;
+   
+}
+
+/*Header*/
+
+#header{
+    width: 100%;
+    height:70px;
+    background-color: black;
+    font-family: BebasNeue;
+    color: white;
+}
+
+#logo{
+    float:left;
+    width:200px;
+    background-color: #37BCF9;
+    text-align: center;
+    letter-spacing: 1px;
+    margin-top: 8px;
+    margin-left: 20px;
+    cursor:pointer;
+    overflow: hidden;
+    transition: all 300ms;
+}
+
+#logo h3{
+    display: block;
+    float: right;
+    font-size: 40px;
+    font-weight: normal;
+    margin-top: 5px;
+    margin-right: 65px;
+    transition: all 300ms;
+   
+}
+
+#logo:hover{
+    border-radius: 4px;
+    color: black;
+    background-color: #ccc;
+
+}
+
+#logo .gear{
+    display: block;
+    float: left;
+    font-size: 30px;
+    margin-top:8px ;
+    margin-left: 26px;
+    animation-name:rotate-gear;
+    animation-duration:2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes rotate-gear{
+    from{
+        transform: rotateZ(0deg);
+    }
+    to{
+        transform: rotateZ(360deg);
+    }
+}
+
+#logo:hover .gear{
+   animation: fromBellow 500ms linear;
+}
+
+@keyframes fromBellow{
+    0%{
+        transform: translateY(0%);
+    }
+    50%{
+        transform: translateY(200%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
+
+#logo:hover h3{
+    animation: fromRight 300ms linear;
+}
+
+@keyframes fromRight{
+    from{
+        transform: translateX(200%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+    
+}
+
+/*Menu*/
+
+#menu{
+    list-style: none;
+    float:right;
+}
+
+#menu ul{
+    margin-top: 20px;
+    margin-right: -22px;
+    font-size: 25px;
+}
+
+#menu ul li{
+    display: inline-block;
+    margin-right: 40px;
+    letter-spacing: 1px;
+}
+
+#menu ul li a{
+    display: block;
+    color: white;
+    transition: all 200ms;
+}
+
+#menu ul li a:hover{
+    color: #37BCF9;
+    transform: scale(1.2, 1.2);
+}
+
+/*Banner*/
+#Banner{
+    width:95.6%;
+    height:100px;
+    border:10px solid white;
+    box-shadow: 0px 0px 2px gray;
+    background-image: url(https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/bakbaner.png);
+    background-position: -200px -200px;
+    margin:20px auto;
+    overflow: hidden;
+    animation: backBanner 10s linear;
+}
+
+@keyframes backBanner{
+    0%{
+        background-position: 0px 0px;
+    }
+    100%{
+        background-position: -200px -200px;
+    }
+        
+    
+}
+
+#Banner h1{
+    display: block;
+    width: 850px;
+    font-family: BebasNeue;
+    font-weight: normal;
+    font-size: 45px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 1px black;
+    line-height: 100px;
+    text-align: center;
+    margin:0px auto;
+    animation: showText 10s linear;
+}
+
+@keyframes showText{
+    0%{
+        transform: translateX(-600%) scale(5,5);
+        opacity: 1;
+    }
+    50%{
+        transform: translateX(600%) scale(5,5);
+        opacity: 1;
+    }
+    75%{
+        transform: translateX(-600%) scale(5,5);
+        text-shadow: none;
+        color: transparent;
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0%) scale(1,1);
+        text-shadow: 2px 2px 1px black;
+        color:white;
+        opacity: 1;
+    }
+}
+
+/*Cards*/
+
+#card{
+    float: left;
+    width:180px;
+    height:350px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 2px #ddd;
+    margin: 18px;
+    margin-top: 40px;
+    margin-bottom: 125px;
+    cursor: pointer;
+    overflow:hidden;
+    transition:all 300ms;
+    
+    
+}
+
+#card .category{
+    font-family: TrebuchetMS;
+    font-size: 20px;
+    font-weight: bold;
+    padding:5px;
+    margin-top:20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #00538C;
+    transition: all 300ms;
+}
+
+#card .description{
+    font-size: 18px;
+    color: #00538C;
+    text-align: center;
+    padding:10px;
+    transition: all 300ms;
+}
+
+#card .icon{
+    display: block;
+    font-size: 50px;
+    text-align: center;
+    margin:20px;
+    transition: all 300ms;
+    
+}
+
+#card:hover{
+    background: black;
+}
+
+
+#card:hover .icon{
+    font-size: 70px;
+    color: #37BCF9;
+    animation: showCardIcon 300ms linear;
+}
+
+@keyframes showCardIcon{
+    from{
+        transform: translateY(-200%);
+    }
+    to{
+        transform: translateY(0%);
+    }
+}
+
+#card:hover .category, #card:hover .description{
+    color:white;
+    animation: showCardText 400ms linear;
+}
+
+@keyframes showCardText{
+    from{
+        transform: translateX(-300%);
+    }
+
+    to{
+        transform: translateX(0%);
+    }
+}
+
+
+
+
+/*Main Content*/
+
+#articles{
+    width:765px;
+    float:left;
+}
+
+#articles h2{
+    display: block;
+    width:100%;
+    height:75px;
+    line-height: 75px;
+    background: url(../img/pxgray.png), white;
+    box-shadow: 0px 1px 0px #393d3f, 1px 2px 0px #393d3f, 2px 3px 0px #393d3f, 3px 4px 0px #393d3f;
+    font-family: "BebasNeue";
+    font-size: 40px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    color: black;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#articles article{
+    width:745px;
+    height:450px;
+    overflow: scroll;
+    background: white;
+    color:black;
+    box-shadow: 1px 1px 2px #ddd;
+    font-family: TrebuchetMS;
+    border:1px solid #ccc;
+    margin:40px auto;
+}
+
+#feature{
+    height:200px;
+}
+
+#articles .data{
+    float:right;
+    width:230px;
+    height:40px;
+    background-color: #393D3F;
+    border-radius: 0px 0px 0px 7px;
+    font-size: 14px;
+    font-weight: normal;
+    color:white;
+    line-height: 40px;
+}
+
+#articles span{
+    margin: 6px;
+    
+}
+
+#articles article h4{
+    display:block;
+    font-size: 23px;
+    text-align: left;
+    color:#00538C;
+    margin: 15px;
+}
+
+#articles article h4 a{
+    text-decoration: none;
+    color:#00538C;
+}
+
+#articles article h4 a:hover{
+    text-decoration: underline;
+}
+
+
+#articles p{
+    font-size: 16px;
+    color:black;
+    margin:10px;
+}
+
+#blog{
+    width: 745px;
+    height:120px;
+    background-color: white;
+    border:1px solid #ccc;
+    text-align: center;
+    margin-top:60px;
+    transition:all 1s;
+}
+
+#blog a{
+    display: block;
+    font-family: BebasNeue;
+    font-size: 40px;
+    letter-spacing: 3px;
+    line-height: 145px;
+    color:#00538C;
+    text-decoration: none;
+    transition:all 1s;
+}
+
+#blog:hover{
+    background-color: #333;
+    border: 10px solid #37BCF9;
+    border-radius: 240px;
+    box-shadow: 0px 0px 10px gray;
+}
+
+#blog:hover a{
+    color:white ;
+    text-shadow: 1px 1px 1px black, 1px 2px 1px black, 1px 3px 1px black, 1px 4px 1px black, 1px 5px 1px black, 1px 6px 1px black;
+}
+/*footer*/
+
+#footer{
+    width:100%;
+    height: 200px;
+    background: black;
+    color: white;
+    overflow: hidden;
+}
+
+#footer .wrap>div{
+    float:left;
+    width: 30%;
+    margin:30px;
+    margin-right: 0px;
+    text-align: center;
+    color: white;
+    font-family: TrebuchetMS;
+}
+
+#footer a{
+    text-decoration: none;
+    color:#37BCF9;
+    transition:all 300ms;
+}
+
+#footer h5{
+    display: block;
+    background: url(../img/pxgray.png), white;
+    height: 50px;
+    width:300px;
+    letter-spacing: 2px;
+    text-align: center;
+    font-family: BebasNeue;
+    font-size: 40px;
+    line-height: 55px;
+    color:black;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+#footer_menu{
+    width: 300px;
+}
+#footer ul{
+    text-align: left;
+    margin: 10px;
+    margin-right: 0px;
+    font-size: 25px;
+    width:275px;
+}
+
+#footer ul li{
+    margin-top: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+    transition: all 300ms;
+}
+
+
+#footer ul li a{
+    display: block;
+    height: 40px;
+    transition:all 300ms;
+    
+}
+
+#footer ul li:hover a {
+    color:white;
+    padding-left: 40px;
+}
+
+#location iframe{
+    width: 85% ;
+    height:300px;
+    border: 5px solid white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px gray;
+    margin-top: 20px;
+    margin-left: -50px;
+}
+#footer img{
+    margin-bottom: 15px;
+}
+
+#dev{
+    width: 100px;
+}
+#browsers{
+    width: 320px;
+}
+
+#browsers a{
+  display: inline-block;
+}
+#browsers img{
+    width: 45px;
+}
+
+#copy{
+    font-size: 25px;
+    text-align: left;
+}
+

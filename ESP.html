@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>GIS Maps</title>
+    <link rel="stylesheet" type="text/css" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/CSS/website001.css" />
+
+    <link rel="icon" type="image/x-icon" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/map.png" />
+</head>
+
+<body>
+
+    <h2>Barcelona Map </h2>
+    <div id="map_space"
+        style="width: 60%; height:600px; background-color: rgb(52, 173, 221); border: 8px solid blue; margin-left: 5px;">
+    </div>
+
+    <div id="msg"></div>
+    <a class="return" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/website001.html">Back to Site</a>
+
+
+    <section id="articles">
+        <div class="clearfix"></div>
+
+
+
+        <article id="feature">
+
+            <h4>
+                Map Features:
+            </h4>
+            <p>
+                This map features event listerners and bounds to limit the google map to just Spain, with a polygon between 3 spanish airports/ markers with infowindows.
+
+                <pre>
+                    
+                    <code>
+                        function createMarker(point, icon, info, map) {
+                            var markerOpts = {
+                                position: point,
+                                icon: icon,
+                                map: map
+                            };
+                            var marker = new google.maps.Marker(markerOpts);
+                
+                            var infoWindowOpts = { content: info };
+                            var infoWindow = new google.maps.InfoWindow(infoWindowOpts);
+                            google.maps.event.addListener(marker, 'click', function () {
+                                infoWindow.open(map, marker);
+                            });
+                        }
+                
+                        var marker = new google.maps.Marker(markerOpts);
+                        function draw_map() {
+                            /* This creates a JS variable called theMap*/
+                            var theMap = new google.maps.Map(document.getElementById("map_space"), {
+                                center: new google.maps.LatLng(41.404427, 2.175475), /*Center specifies the location of the map using latitud and longitud for the new good map. currently sowing a location in Wales*/
+                                zoom: 8,
+                                maxZoom: 18,
+                                minZoom: 4,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP, /* Defines the type of map. In this case it is defining it a a google map*/
+                
+                            });
+                
+                           
+                
+                          
+                
+                            // Bounds for Spain
+                            var Spain_bounds = new google.maps.LatLngBounds(
+                                new google.maps.LatLng(35.808593, -9.392883),
+                                new google.maps.LatLng(43.874560, 4.591888)
+                            );
+                
+                            var lastValidCenter = theMap.getCenter();
+                
+                            google.maps.event.addListener(theMap, 'center_changed', function () {
+                                if (Spain_bounds.contains(theMap.getCenter())) {
+                                    //still within bounds, save last position
+                                    lastValidCenter = theMap.getCenter();
+                                    return;
+                                }
+                
+                                //not valid so return to last valid position
+                                theMap.panTo(lastValidCenter);
+                
+                            });
+                
+                            /*Add markers*/
+                            var icon02 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/Plane.png'
+                            var loc = new google.maps.LatLng(36.67208, -4.48134); //Malaga Airport
+                            var loc02 = new google.maps.LatLng(41.345585, 2.112687);//BCN Airport
+                            var loc03 = new google.maps.LatLng(38.88456, 1.39032); // Ibiza Airport
+                         
+                
+                            var mkr1 = createMarker(loc, icon02, '<a href="https://www.aena.es/es/malaga-costa-del-sol.html"> Malaga Airport</a>', theMap);
+                            var mkr2 = createMarker(loc02, icon02, '<a href="https://www.aena.es/es/josep-tarradellas-barcelona-el-prat.html?utm_source=Google&utm_medium=GMB_BCN"> Barcelona El Prat Airport</a>', theMap);
+                            var mkr3 = createMarker(loc03, icon02, '<a href="https://www.aena.es/en/ibiza.html"> Ibiza Airport</a>', theMap);
+                
+                             /*Polygon*/
+                             const PolygonCoords = [
+                                {lat: 36.67208, lng: -4.48134},
+                                {lat: 41.345585, lng: 2.112687},
+                                {lat: 38.88456, lng: 1.39032}
+                
+                            ];
+                
+                            //Polygon
+                            const Airports = new google.maps.Polygon(
+                                {
+                                    paths: PolygonCoords,
+                                    strokeColor: "blue",
+                                    strokeOpacity: 0.8,
+                                    strokeWeight: 2,
+                                    fillColor: "light blue",
+                                    fillOpacity: 0.35,
+                                });
+            
+                    </code>
+                </pre>
+                
+
+
+            </p>
+        </article>
+    </section>
+
+    <script>
+
+        function createMarker(point, icon, info, map) {
+            var markerOpts = {
+                position: point,
+                icon: icon,
+                map: map
+            };
+            var marker = new google.maps.Marker(markerOpts);
+
+            var infoWindowOpts = { content: info };
+            var infoWindow = new google.maps.InfoWindow(infoWindowOpts);
+            google.maps.event.addListener(marker, 'click', function () {
+                infoWindow.open(map, marker);
+            });
+        }
+
+        var marker = new google.maps.Marker(markerOpts);
+        function draw_map() {
+            /* This creates a JS variable called theMap*/
+            var theMap = new google.maps.Map(document.getElementById("map_space"), {
+                center: new google.maps.LatLng(41.404427, 2.175475), /*Center specifies the location of the map using latitud and longitud for the new good map. currently sowing a location in Wales*/
+                zoom: 8,
+                maxZoom: 18,
+                minZoom: 4,
+                mapTypeId: google.maps.MapTypeId.ROADMAP, /* Defines the type of map. In this case it is defining it a a google map*/
+
+            });
+
+           
+
+          
+
+            // Bounds for Spain
+            var Spain_bounds = new google.maps.LatLngBounds(
+                new google.maps.LatLng(35.808593, -9.392883),
+                new google.maps.LatLng(43.874560, 4.591888)
+            );
+
+            var lastValidCenter = theMap.getCenter();
+
+            google.maps.event.addListener(theMap, 'center_changed', function () {
+                if (Spain_bounds.contains(theMap.getCenter())) {
+                    //still within bounds, save last position
+                    lastValidCenter = theMap.getCenter();
+                    return;
+                }
+
+                //not valid so return to last valid position
+                theMap.panTo(lastValidCenter);
+
+            });
+
+            /*Add markers*/
+            var icon02 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/Plane.png'
+            var loc = new google.maps.LatLng(36.67208, -4.48134); //Malaga Airport
+            var loc02 = new google.maps.LatLng(41.345585, 2.112687);//BCN Airport
+            var loc03 = new google.maps.LatLng(38.88456, 1.39032); // Ibiza Airport
+         
+
+            var mkr1 = createMarker(loc, icon02, '<a href="https://www.aena.es/es/malaga-costa-del-sol.html"> Malaga Airport</a>', theMap);
+            var mkr2 = createMarker(loc02, icon02, '<a href="https://www.aena.es/es/josep-tarradellas-barcelona-el-prat.html?utm_source=Google&utm_medium=GMB_BCN"> Barcelona El Prat Airport</a>', theMap);
+            var mkr3 = createMarker(loc03, icon02, '<a href="https://www.aena.es/en/ibiza.html"> Ibiza Airport</a>', theMap);
+
+             /*Polygon*/
+             const PolygonCoords = [
+                {lat: 36.67208, lng: -4.48134},
+                {lat: 41.345585, lng: 2.112687},
+                {lat: 38.88456, lng: 1.39032}
+
+            ];
+
+            //Polygon
+            const Airports = new google.maps.Polygon(
+                {
+                    paths: PolygonCoords,
+                    strokeColor: "blue",
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: "light blue",
+                    fillOpacity: 0.35,
+                });
+
+            Airports.setMap(theMap);
+            var length = google.maps.geometry.spherical.computeLength(Airports.getPath());
+
+            document.getElementById('msg').innerHTML = "length of the Polygon: " + length.toFixed(2) + " meters.";
+
+
+            
+            
+        }
+
+
+
+      
+            
+        
+
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDotQOsRoXo24UyVNWTVE92XyodSZOgYv4&callback=draw_map"></script>
+
+</body>
+
+</html>

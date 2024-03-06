@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>GIS Maps</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/CSS/website001.css" />
+
+    <link rel="icon" type="image/x-icon" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/map.png" />
+</head>
+
+<body>
+
+    <h2>Barcelona Map </h2>
+    <div id="map_space"
+        style="width: 60%; height:600px; background-color: rgb(52, 173, 221); border: 8px solid blue; margin-left: 5px;">
+    </div>
+    <div id="msg"></div>
+    <a class="return" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/website001.html">Back to Site</a>
+
+    <section id="articles">
+        <div class="clearfix"></div>
+
+
+
+        <article id="feature">
+
+            <h4>
+                Map Features:
+            </h4>
+            <p>
+                This map features a google map with customised markers of barcelona attractions with infoboxes, polyline
+                with distance calculation below, and uses event listeners to span back to center after 5 seconds.  All the icons were handpicked and download from a free image source at https://www.flaticon.com/
+
+                <pre>
+                    
+                    <code>
+                        function createMarker(point, icon, info, map) {
+                            var markerOpts = {
+                                position: point,
+                                icon: icon,
+                                map: map
+                            };
+                            var marker = new google.maps.Marker(markerOpts);
+            
+                            var infoWindowOpts = { content: info };
+                            var infoWindow = new google.maps.InfoWindow(infoWindowOpts);
+                            google.maps.event.addListener(marker, 'click', function () {
+                                infoWindow.open(map, marker);
+                            });
+                        }
+            
+                        var marker = new google.maps.Marker(markerOpts);
+            
+            
+            
+            
+                        function draw_map() {
+                            /* This creates a JS variable called theMap*/
+                            var theMap = new google.maps.Map(document.getElementById("map_space"), {
+                                center: new google.maps.LatLng(41.404427, 2.175475), /*Center specifies the location of the map using latitud and longitud for the new good map. currently sowing a location in Wales*/
+                                zoom: 12,
+                                maxZoom: 18,
+                                minZoom: 4,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP, /* Defines the type of map. In this case it is defining it a a google map*/
+            
+            
+                            });
+            
+                            // Save the original center
+                            var Center = theMap.getCenter();
+            
+                            theMap.addListener("center_changed", () => {
+                                // pan back after 5 seconds of center being changed
+                                window.setTimeout(() => {
+                                    theMap.panTo(Center);
+                                }, 5000);
+                            });
+            
+            
+            
+            
+            
+                            /*Add markers*/
+                            var icon01 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/castle02.png';
+                            var icon02 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/Plane.png'
+                            var loc = new google.maps.LatLng(41.403889, 2.176013);
+                            var loc02 = new google.maps.LatLng(41.345585, 2.112687);
+            
+                            var mkr1 = createMarker(loc, icon01, '<a href="https://sagradafamilia.org/"> Sagrada familia</a>', theMap);
+                            var mkr2 = createMarker(loc02, icon02, '<a href="https://www.aena.es/es/josep-tarradellas-barcelona-el-prat.html?utm_source=Google&utm_medium=GMB_BCN"> Barcelona El Prat Airport</a>', theMap);
+            
+                            //create Polyline
+            
+                            var line = new google.maps.Polyline({ path: [loc02, loc], map: theMap });
+            
+            
+                            // Calculate distance of the Polyline
+                            function haversine_distance(loc2, loc) {
+                                var R = 3958.8; // Radius of the Earth in miles
+                                var rlat1 = loc.lat() * (Math.PI / 180); // Convert degrees to radians
+                                var rlat2 = loc2.lat() * (Math.PI / 180); // Convert degrees to radians
+                                var difflat = rlat2 - rlat1; // Radian difference (latitudes)
+                                var difflon = (loc2.lng() - loc.lng()) * (Math.PI / 180); // Radian difference (longitudes)
+            
+                                var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat / 2) * Math.sin(difflat / 2) + Math.cos(rlat1) * Math.cos(rlat2) * Math.sin(difflon / 2) * Math.sin(difflon / 2)));
+                                return d;
+                            }
+            
+                            var distance = haversine_distance(loc02, loc);
+                            document.getElementById('msg').innerHTML = "Distance between markers: " + distance.toFixed(2) + " mi.";
+            
+                    </code>
+                </pre>
+                
+
+
+            </p>
+        </article>
+    </section>
+
+
+
+
+
+
+
+        <script>
+
+            function createMarker(point, icon, info, map) {
+                var markerOpts = {
+                    position: point,
+                    icon: icon,
+                    map: map
+                };
+                var marker = new google.maps.Marker(markerOpts);
+
+                var infoWindowOpts = { content: info };
+                var infoWindow = new google.maps.InfoWindow(infoWindowOpts);
+                google.maps.event.addListener(marker, 'click', function () {
+                    infoWindow.open(map, marker);
+                });
+            }
+
+            var marker = new google.maps.Marker(markerOpts);
+
+
+
+
+            function draw_map() {
+                /* This creates a JS variable called theMap*/
+                var theMap = new google.maps.Map(document.getElementById("map_space"), {
+                    center: new google.maps.LatLng(41.404427, 2.175475), /*Center specifies the location of the map using latitud and longitud for the new good map. currently sowing a location in Wales*/
+                    zoom: 12,
+                    maxZoom: 18,
+                    minZoom: 4,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP, /* Defines the type of map. In this case it is defining it a a google map*/
+
+
+                });
+
+                // Save the original center
+                var Center = theMap.getCenter();
+
+                theMap.addListener("center_changed", () => {
+                    // pan back after 4 seconds of center being changed
+                    window.setTimeout(() => {
+                        theMap.panTo(Center);
+                    }, 4000);
+                });
+
+
+
+
+
+                /*Add markers*/
+                var icon01 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/castle02.png'; //castle
+                var icon02 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/Plane.png'  //plane
+                var icon03 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/fountain02.png' //fountain
+                var icon04 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/sagrada03.png' //sagrada familia
+                var icon05 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/point05.png' //point of Interest
+
+                var loc = new google.maps.LatLng(41.403889, 2.176013); //sagrada familia
+                var loc02 = new google.maps.LatLng(41.345585, 2.112687); // BCN Airport
+                var loc03 = new google.maps.LatLng(41.382963, 2.124630); // Stadium Spotify Camp Nou
+                var loc04 = new google.maps.LatLng(41.398911, 2.163172); // Casa Mila
+                var loc05 = new google.maps.LatLng(41.368527, 2.170571); // Montjuïc Castle
+                var loc06 = new google.maps.LatLng(41.416840, 2.134723); // Science museum CosmoCaixa
+
+                var mkr1 = createMarker(loc, icon04, '<a href="https://sagradafamilia.org/"> Sagrada familia</a>', theMap);
+                var mkr2 = createMarker(loc02, icon02, '<a href="https://www.aena.es/es/josep-tarradellas-barcelona-el-prat.html?utm_source=Google&utm_medium=GMB_BCN"> Barcelona El Prat Airport</a>', theMap);
+
+                var mkr3 = createMarker(loc03, icon05, '<a href="https://www.fcbarcelona.com/en/club/facilities/spotify-camp-nou"> Stadium Spotify Camp Nou</a>', theMap);
+                var mkr4 = createMarker(loc04, icon05, '<a href="https://www.lapedrera.com/es?utm_source=google&utm_medium=organic&utm_campaign=myb"> Casa Mila</a>', theMap);
+                var mkr5 = createMarker(loc05, icon01, '<a href="https://ajuntament.barcelona.cat/castelldemontjuic/ca"> Montjuïc Castle</a>', theMap);
+                var mkr6 = createMarker(loc06, icon05, '<a href="https://www.barcelona.de/en/barcelona-museum-cosmocaixa.html"> Science museum CosmoCaixa</a>', theMap);
+               
+                //create Polyline
+
+                var line = new google.maps.Polyline({ path: [loc02, loc], map: theMap });
+
+
+                // Calculate distance of the Polyline
+                function haversine_distance(loc2, loc) {
+                    var R = 3958.8; // Radius of the Earth in miles
+                    var rlat1 = loc.lat() * (Math.PI / 180); // Convert degrees to radians
+                    var rlat2 = loc2.lat() * (Math.PI / 180); // Convert degrees to radians
+                    var difflat = rlat2 - rlat1; // Radian difference (latitudes)
+                    var difflon = (loc2.lng() - loc.lng()) * (Math.PI / 180); // Radian difference (longitudes)
+
+                    var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat / 2) * Math.sin(difflat / 2) + Math.cos(rlat1) * Math.cos(rlat2) * Math.sin(difflon / 2) * Math.sin(difflon / 2)));
+                    return d;
+                }
+
+                var distance = haversine_distance(loc02, loc);
+                document.getElementById('msg').innerHTML = "Distance between markers: " + distance.toFixed(2) + " mi.";
+
+                // Calculate and display distance DRIVING from mkr2 to mkr1 
+                /************ This part WON'T WORK BECAUSE API KEY IS NOT AUTHOURISEd TO USE ROUTE DIRECTIONS SERVICE********/
+                /* INFORMATION GATHERED FROM https://cloud.google.com/blog/products/maps-platform/how-calculate-distances-map-maps-javascript-api
+    
+                
+                let directionsService = new google.maps.DirectionsService();
+                let directionsRenderer = new google.maps.DirectionsRenderer();
+                directionsRenderer.setMap(theMap); // Existing map object displays directions
+                // Create route from existing points used for markers
+                const route = {
+                    origin: loc02,
+                    destination: loc,
+                    travelMode: 'DRIVING'
+                }
+    
+                directionsService.route(route,
+                    function (response, status) { // anonymous function to capture directions
+                        console.log('Directions status:', status);
+                        if (status !== 'OK') {
+                            window.alert('Directions request failed due to ' + status);
+                            return;
+                        } else {
+                            directionsRenderer.setDirections(response); // Add route to the map
+                            var directionsData = response.routes[0].legs[0]; // Get data about the mapped route
+                            if (!directionsData) {
+                                window.alert('Directions request failed');
+                                return;
+                            }
+                            else {
+                                document.getElementById('msg').innerHTML += " Driving distance is " + directionsData.distance.text + " (" + directionsData.duration.text + ").";
+                            }
+                        }
+                    }); */
+
+
+            }
+
+        </script>
+
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDotQOsRoXo24UyVNWTVE92XyodSZOgYv4&callback=draw_map"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>GIS Maps</title>
+  <link rel="stylesheet" type="text/css" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/CSS/website001.css" />
+
+  <link rel="icon" type="image/x-icon" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/map.png" />
+</head>
+
+<body>
+    <h2>
+      Major Airports of Spain
+    </h2>
+    <div id="map_space"
+        style="width: 60%; height:600px; background-color: rgb(52, 173, 221); border: 8px solid blue; margin-left: 5px;">
+    </div>
+    <a class="return" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/website001.html">Back to Site</a>
+
+    <section id="articles">
+      <div class="clearfix"></div>
+
+
+
+      <article id="feature">
+
+          <h4>
+              Map Features:
+          </h4>
+          <p>
+            The Spain GeoJson map was created using the custom made GeoJson online and then parsed into the Bing Api, showing some of the major airports in Spain as well as a polygon of Portugal.
+
+              <pre>
+                  
+                  <code>
+                    
+                      function draw_map() {
+              
+                          var map_ops = {
+                              center: new Microsoft.Maps.Location(41.601773, 3.835331),
+                              zoom: 5,
+                              mapTypeId: Microsoft.Maps.MapTypeId.road
+                          };
+              
+                          var theMap = new Microsoft.Maps.Map(document.getElementById("map_space"), map_ops);
+              
+                          
+              
+              
+              
+              
+                     
+                          //Load GeoJSON module.
+                          /*
+                          Microsoft.Maps.loadModule('Microsoft.Maps.GeoJson', function () {
+              
+                              //Read the GeoJSON file that is hosted on the same domain.
+                              Microsoft.Maps.GeoJson.readFromUrl('https://ces-web2.southwales.ac.uk/students/30047616/GIS/National_Parks_(Dec_2021)_GB_BFE.geojson',
+                                  function (shapes) {
+                                      //Add the shape(s) to the map.
+                                      theMap.entities.push(shapes);
+                                  });
+                          });*/
+              
+                          var myGeoJson = {
+                //GeoJson style code inserted for pushpins and poluygon of Portugal
+              }
+              
+                      //Load the GeoJson Module.
+                      Microsoft.Maps.loadModule('Microsoft.Maps.GeoJson', function () {
+              
+                          //Parse the GeoJson object into a Bing Maps shape.
+                          var shape = Microsoft.Maps.GeoJson.read(myGeoJson, {
+                              polygonOptions: {
+                                  fillColor: 'black',
+                                  strokeColor: 'white',
+                                  strokeThickness: 5
+                              }
+                          });
+              
+                          //Add the shape to the map.
+                          theMap.entities.push(shape);
+                      });
+              
+                         
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+                      }
+              
+                  
+                  </code>
+              </pre>
+              
+
+
+          </p>
+      </article>
+  </section>
+
+    <script>
+        function draw_map() {
+
+            var map_ops = {
+                center: new Microsoft.Maps.Location(41.601773, 3.835331),
+                zoom: 5,
+                mapTypeId: Microsoft.Maps.MapTypeId.road
+            };
+
+            var theMap = new Microsoft.Maps.Map(document.getElementById("map_space"), map_ops);
+
+            
+
+
+
+
+       
+            //Load GeoJSON module.
+            /*
+            Microsoft.Maps.loadModule('Microsoft.Maps.GeoJson', function () {
+
+                //Read the GeoJSON file that is hosted on the same domain.
+                Microsoft.Maps.GeoJson.readFromUrl('https://ces-web2.southwales.ac.uk/students/30047616/GIS/National_Parks_(Dec_2021)_GB_BFE.geojson',
+                    function (shapes) {
+                        //Add the shape(s) to the map.
+                        theMap.entities.push(shapes);
+                    });
+            });*/
+
+            var myGeoJson = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "coordinates": [
+          2.0780752528881408,
+          41.299093661841994
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "coordinates": [
+          -3.5694499576737257,
+          40.477025051574515
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "coordinates": [
+          -4.495261195939122,
+          36.67655196424289
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "coordinates": [
+          1.153063784265271,
+          41.14699631229786
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "coordinates": [
+          -0.47774604946425825,
+          39.49044072092818
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "coordinates": [
+          -5.347907371330422,
+          36.15228893936889
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "coordinates": [
+          -5.5024718265192405,
+          40.940662971134515
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "coordinates": [
+          4.225359345299125,
+          39.864793254692756
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#df1111",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "light blue",
+        "fill-opacity": 0.5
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -8.86535041516953,
+              41.92851300691109
+            ],
+            [
+              -8.80852395403602,
+              41.63416615979196
+            ],
+            [
+              -8.72435933277663,
+              41.18851567250053
+            ],
+            [
+              -8.698276045407937,
+              40.765903533627636
+            ],
+            [
+              -8.785518586303937,
+              40.40924769019307
+            ],
+            [
+              -8.942289580079716,
+              40.031422610829765
+            ],
+            [
+              -9.041146519471909,
+              39.675181576206256
+            ],
+            [
+              -9.32029719278043,
+              39.27534244304857
+            ],
+            [
+              -9.486149495730672,
+              38.99385599336719
+            ],
+            [
+              -9.45695248183847,
+              38.71271000976273
+            ],
+            [
+              -9.304468834902053,
+              38.680803936230035
+            ],
+            [
+              -8.983133694817184,
+              38.51833467846336
+            ],
+            [
+              -8.748376113119832,
+              38.495947404815126
+            ],
+            [
+              -8.818995259214034,
+              38.127360933872126
+            ],
+            [
+              -8.849222544289603,
+              37.38719281157688
+            ],
+            [
+              -8.850424881097439,
+              37.00364817003435
+            ],
+            [
+              -8.360143492990233,
+              37.121208033689484
+            ],
+            [
+              -7.979384551188787,
+              37.06196866697202
+            ],
+            [
+              -7.213085741857185,
+              37.180039616206315
+            ],
+            [
+              -7.492815188528681,
+              37.623665220493066
+            ],
+            [
+              -7.4747530648407405,
+              37.8633560684852
+            ],
+            [
+              -7.098987633108834,
+              38.03026122199336
+            ],
+            [
+              -6.916050104447692,
+              38.1568336945102
+            ],
+            [
+              -7.243087639766685,
+              38.38118018649942
+            ],
+            [
+              -7.329730533936072,
+              38.83825570747126
+            ],
+            [
+              -7.091138591819259,
+              38.89880840082597
+            ],
+            [
+              -6.930608982438827,
+              39.13384536058385
+            ],
+            [
+              -7.289234885259134,
+              39.346195868650796
+            ],
+            [
+              -7.4931077280301395,
+              39.61968732005971
+            ],
+            [
+              -7.168235931201167,
+              39.65770190985032
+            ],
+            [
+              -6.998405187564856,
+              39.67624469186467
+            ],
+            [
+              -6.817846093488669,
+              39.99731164140627
+            ],
+            [
+              -6.940742193693694,
+              40.140324534711084
+            ],
+            [
+              -6.93702435245109,
+              40.24847144517739
+            ],
+            [
+              -6.7641397047501925,
+              40.29933990880079
+            ],
+            [
+              -6.752932873092277,
+              40.59160188173121
+            ],
+            [
+              -6.749522577895931,
+              40.678253457768335
+            ],
+            [
+              -6.863552263906854,
+              41.07088560326912
+            ],
+            [
+              -6.7020163493273515,
+              41.13322739623732
+            ],
+            [
+              -6.1125507108440615,
+              41.57909229966748
+            ],
+            [
+              -6.444842510048488,
+              41.66213369668708
+            ],
+            [
+              -6.492500091861814,
+              41.88152669863126
+            ],
+            [
+              -6.531077994272664,
+              41.99162254440978
+            ],
+            [
+              -6.751374377955472,
+              41.995284304944164
+            ],
+            [
+              -6.897612838398686,
+              42.008478460255276
+            ],
+            [
+              -7.163532343757623,
+              41.957557073348994
+            ],
+            [
+              -7.225248778055317,
+              41.870982386351585
+            ],
+            [
+              -7.546344589015206,
+              41.87481687968625
+            ],
+            [
+              -7.822507443091723,
+              41.91029603944017
+            ],
+            [
+              -8.057076282492318,
+              41.84678624923478
+            ],
+            [
+              -8.153266670213128,
+              42.1422468764774
+            ],
+            [
+              -8.59294319290862,
+              42.05711783548193
+            ],
+            [
+              -8.86535041516953,
+              41.92851300691109
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": 8
+    }
+  ]
+}
+
+        //Load the GeoJson Module.
+        Microsoft.Maps.loadModule('Microsoft.Maps.GeoJson', function () {
+
+            //Parse the GeoJson object into a Bing Maps shape.
+            var shape = Microsoft.Maps.GeoJson.read(myGeoJson, {
+                polygonOptions: {
+                    fillColor: 'black',
+                    strokeColor: 'white',
+                    strokeThickness: 5
+                }
+            });
+
+            //Add the shape to the map.
+            theMap.entities.push(shape);
+        });
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+    </script>
+
+    <script
+        src='https://www.bing.com/api/maps/mapcontrol?&key=AhHC6EVySdj8x30C1bgHgLitn6RnUhei1WxE8X4rQdbo-AOTap8xzLHfT-EFJ17e&callback=draw_map'></script>
+</body>
+
+</html>

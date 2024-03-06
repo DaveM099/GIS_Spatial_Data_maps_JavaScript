@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>GIS Maps</title>
+    <link rel="stylesheet" type="text/css" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/CSS/website001.css" />
+
+    <link rel="icon" type="image/x-icon" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/map.png" />
+</head>
+
+<body>
+    <h2>
+
+    </h2>
+    <div id="map_space"
+        style="width: 60%; height:600px; background-color: rgb(52, 173, 221); border: 8px solid blue; margin-left: 5px;">
+    </div>
+    <a class="return" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/website001.html">Back to Site</a>
+
+    <section id="articles">
+        <div class="clearfix"></div>
+
+
+
+        <article id="feature">
+
+            <h4>
+                Map Features:
+            </h4>
+            <p>
+                This bing map features pushpins of the Airport and the sagrada familia with a custom styles polyline in between them. This map also features infoboxes that appear in the center of the map when a pushpin is clicked with the help of events handlers.
+
+                <pre>
+                    
+                    <code>
+                        function draw_map() {
+
+                            var map_ops = {
+                                center: new Microsoft.Maps.Location(41.417777, 2.153404),
+                                zoom: 12,
+                                mapTypeId: Microsoft.Maps.MapTypeId.road
+                            };
+                
+                            var theMap = new Microsoft.Maps.Map(document.getElementById("map_space"), map_ops);
+                
+                            var loc = new Microsoft.Maps.Location(41.403889, 2.176013);
+                            var loc02 = new Microsoft.Maps.Location(41.345585, 2.112687);
+                
+                            //Create array of locations
+                            var coords = [loc, loc02];
+                
+                            //Create a polyline
+                            var line = new Microsoft.Maps.Polyline(coords, {
+                                strokeColor: 'Blue',
+                                strokeThickness: 3,
+                                strokeDashArray: [4, 4]
+                            });
+                
+                            //Add the polyline to map
+                            theMap.entities.push(line);
+                
+                
+                
+                
+                
+                            var icon01 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/castle02.png';
+                            var icon02 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/Plane.png'
+                
+                            var layer = new Microsoft.Maps.Layer();
+                            //Create Pushpin
+                           
+                            var pin = new Microsoft.Maps.Pushpin(loc, {
+                                title: 'Sagrada familia',
+                                subTitle: 'Attraction',
+                                icon: icon01
+                            });
+                
+                            var pin02 = new Microsoft.Maps.Pushpin(loc02, {
+                                title: 'BCN Airport',
+                                subTitle: 'Airport',
+                                icon: icon02
+                            });
+                
+                            //Add the pushpin to the map
+                            layer.add(pin);
+                            layer.add(pin02);
+                            theMap.layers.insert(layer);
+                
+                            //add infobox to pins
+                            //pin
+                            var center = theMap.getCenter();
+                
+                            var infobox = new Microsoft.Maps.Infobox(center, { title: 'Sagrada familia', description: 'Found at:https://sagradafamilia.org/', visible: false });
+                            infobox.setMap(theMap);
+                            Microsoft.Maps.Events.addHandler(pin, 'click', function () {
+                                infobox.setOptions({ visible: true });
+                            });
+                            theMap.entities.push(pin);
+                
+                            //pin02
+                            var infobox = new Microsoft.Maps.Infobox(center, { title: 'BCN El-Prat Airport', description: 'Found at:https://www.aena.es/es/josep-tarradellas-barcelona-el-prat.html?utm_source=Google&utm_medium=GMB_BCN', visible: false });
+                            infobox.setMap(theMap);
+                            Microsoft.Maps.Events.addHandler(pin02, 'click', function () {
+                                infobox.setOptions({ visible: true });
+                            });
+                            theMap.entities.push(pin02);
+                
+                    </code>
+                </pre>
+                
+
+
+            </p>
+        </article>
+    </section>
+
+    <script>
+        function draw_map() {
+
+            var map_ops = {
+                center: new Microsoft.Maps.Location(41.417777, 2.153404),
+                zoom: 12,
+                mapTypeId: Microsoft.Maps.MapTypeId.road
+            };
+
+            var theMap = new Microsoft.Maps.Map(document.getElementById("map_space"), map_ops);
+
+            var loc = new Microsoft.Maps.Location(41.403889, 2.176013);
+            var loc02 = new Microsoft.Maps.Location(41.345585, 2.112687);
+
+            //Create array of locations
+            var coords = [loc, loc02];
+
+            //Create a polyline
+            var line = new Microsoft.Maps.Polyline(coords, {
+                strokeColor: 'Blue',
+                strokeThickness: 3,
+                strokeDashArray: [4, 4]
+            });
+
+            //Add the polyline to map
+            theMap.entities.push(line);
+
+
+
+
+
+            var icon01 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/sagrada03.png';
+            var icon02 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/Plane.png'
+
+            var layer = new Microsoft.Maps.Layer();
+            //Create Pushpin
+           
+            var pin = new Microsoft.Maps.Pushpin(loc, {
+                title: 'Sagrada familia',
+                subTitle: 'Attraction',
+                icon: icon01
+            });
+
+            var pin02 = new Microsoft.Maps.Pushpin(loc02, {
+                title: 'BCN Airport',
+                subTitle: 'Airport',
+                icon: icon02
+            });
+
+            //Add the pushpin to the map
+            layer.add(pin);
+            layer.add(pin02);
+            theMap.layers.insert(layer);
+
+            //add infobox to pins
+            //pin
+            var center = theMap.getCenter();
+
+            var infobox = new Microsoft.Maps.Infobox(center, { title: 'Sagrada familia', description: 'Found at:https://sagradafamilia.org/', visible: false });
+            infobox.setMap(theMap);
+            Microsoft.Maps.Events.addHandler(pin, 'click', function () {
+                infobox.setOptions({ visible: true });
+            });
+            theMap.entities.push(pin);
+
+            //pin02
+            var infobox = new Microsoft.Maps.Infobox(center, { title: 'BCN El-Prat Airport', description: 'Found at:https://www.aena.es/es/josep-tarradellas-barcelona-el-prat.html?utm_source=Google&utm_medium=GMB_BCN', visible: false });
+            infobox.setMap(theMap);
+            Microsoft.Maps.Events.addHandler(pin02, 'click', function () {
+                infobox.setOptions({ visible: true });
+            });
+            theMap.entities.push(pin02);
+
+
+
+        }
+
+    </script>
+
+    <script
+        src='https://www.bing.com/api/maps/mapcontrol?&key=AhHC6EVySdj8x30C1bgHgLitn6RnUhei1WxE8X4rQdbo-AOTap8xzLHfT-EFJ17e&callback=draw_map'></script>
+</body>
+
+</html>

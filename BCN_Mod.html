@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>GIS Maps</title>
+        <link rel="stylesheet" type="text/css" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/CSS/website001.css" />
+    
+        <link rel="icon" type="image/x-icon" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/map.png" />
+    </head>
+
+<body>
+
+    <h2>Barcelona Map </h2>
+    <div id="map_space"
+        style="width: 60%; height:600px; background-color: rgb(52, 173, 221); border: 8px solid blue; margin-left: 5px;">
+    </div>
+    <a class="return" href="https://ces-web2.southwales.ac.uk/students/30047616/GIS/website001.html">Back to Site</a>
+
+    <section id="articles">
+        <div class="clearfix"></div>
+
+
+
+        <article id="feature">
+
+            <h4>
+                Map Features:
+            </h4>
+            <p>
+                This map features a modified style google map of Barcelona , and event listeners that spans it back to centre of map  after 3 seconds of being moved.
+
+                <pre>
+                    
+                    <code>
+                        function createMarker(point, icon, info, map) {
+                            var markerOpts = {
+                                position: point,
+                                icon: icon,
+                                map: map
+                            };
+                            var marker = new google.maps.Marker(markerOpts);
+                
+                            var infoWindowOpts = { content: info };
+                            var infoWindow = new google.maps.InfoWindow(infoWindowOpts);
+                            google.maps.event.addListener(marker, 'click', function () {
+                                infoWindow.open(map, marker);
+                            });
+                        }
+                
+                        var marker = new google.maps.Marker(markerOpts);
+                
+                        function draw_map() {
+                            /* This creates a JS variable called theMap02*/
+                            var theMap02 = new google.maps.Map(document.getElementById("map_space"), {
+                                center: new google.maps.LatLng(41.404427, 2.175475), /*Center specifies the location of the map using latitud and longitud for the new good map. currently sowing a location in Wales*/
+                                zoom: 12,
+                                maxZoom: 18,
+                                minZoom: 4,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP,/* Defines the type of map. In this case it is defining it a a google map*/
+                                disableDefaultUI: true
+                            });
+                
+                
+                
+                
+                
+                            //change style of map with Json using https://mapstyle.withgoogle.com/
+                            var myStyles = [
+                               //code styles...
+                            ]
+                
+                            var styledMapType = new google.maps.StyledMapType(myStyles, {
+                                map: theMap02,
+                                name: 'Modified BCN map'
+                            });
+                
+                
+                            theMap02.mapTypes.set('modified_bcn_map', styledMapType);
+                            theMap02.setMapTypeId('modified_bcn_map');
+                
+                
+                
+                            //Save center location
+                            // Save the original center
+                            var Center = theMap02.getCenter();
+                
+                           
+                
+                           // Save the original center
+                           var Center = theMap02.getCenter();
+                
+                            theMap02.addListener("center_changed", () => {
+                                // pan back after 3 seconds of center being changed
+                                window.setTimeout(() => {
+                                    theMap02.panTo(Center);
+                                }, 3000);
+                            });
+                            /*Add markers*/
+                            var icon01 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/castle02.png';
+                            var icon02 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/Plane.png'
+                            var loc = new google.maps.LatLng(41.403889, 2.176013);
+                            var loc02 = new google.maps.LatLng(41.345585, 2.112687);
+                
+                
+                            var mkr1 = createMarker(loc, icon01, '<a href="https://sagradafamilia.org/"> Sagrada familia</a>', theMap02);
+                            var mkr2 = createMarker(loc02, icon02, '<a href="https://www.aena.es/es/josep-tarradellas-barcelona-el-prat.html?utm_source=Google&utm_medium=GMB_BCN"> Barcelona El Prat Airport</a>', theMap02);
+                
+                
+                        }
+                
+            
+                    </code>
+                </pre>
+                
+
+
+            </p>
+        </article>
+
+
+    <script>
+
+        function createMarker(point, icon, info, map) {
+            var markerOpts = {
+                position: point,
+                icon: icon,
+                map: map
+            };
+            var marker = new google.maps.Marker(markerOpts);
+
+            var infoWindowOpts = { content: info };
+            var infoWindow = new google.maps.InfoWindow(infoWindowOpts);
+            google.maps.event.addListener(marker, 'click', function () {
+                infoWindow.open(map, marker);
+            });
+        }
+
+        var marker = new google.maps.Marker(markerOpts);
+
+        function draw_map() {
+            /* This creates a JS variable called theMap02*/
+            var theMap02 = new google.maps.Map(document.getElementById("map_space"), {
+                center: new google.maps.LatLng(41.404427, 2.175475), /*Center specifies the location of the map using latitud and longitud for the new good map. currently sowing a location in Wales*/
+                zoom: 12,
+                maxZoom: 18,
+                minZoom: 4,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,/* Defines the type of map. In this case it is defining it a a google map*/
+                disableDefaultUI: true
+            });
+
+
+
+
+
+            //change style of map with Json using https://mapstyle.withgoogle.com/
+            var myStyles = [
+                {
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#ebe3cd"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#523735"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "color": "#f5f1e6"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#c9b2a6"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative.land_parcel",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#dcd2be"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative.land_parcel",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#ae9e90"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape.man_made",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape.natural",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#dfd2ae"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape.natural.landcover",
+                    "elementType": "labels.text",
+                    "stylers": [
+                        {
+                            "visibility": "on"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#dfd2ae"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#93817c"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.attraction",
+                    "elementType": "labels.text",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.business",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.business",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.business",
+                    "elementType": "labels",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.business",
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.business",
+                    "elementType": "labels.text",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.government",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.government",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.government",
+                    "elementType": "labels",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.medical",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#a5b076"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#447530"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.place_of_worship",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.place_of_worship",
+                    "elementType": "labels",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.school",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.sports_complex",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f5f1e6"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#fdfcf8"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f8c967"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#e9bc62"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway.controlled_access",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#e98d58"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway.controlled_access",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#db8555"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.local",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#806b63"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit.line",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#dfd2ae"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit.line",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#8f7d77"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit.line",
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "color": "#ebe3cd"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit.station",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#dfd2ae"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#b9d3c2"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#92998d"
+                        }
+                    ]
+                }
+            ]
+
+            var styledMapType = new google.maps.StyledMapType(myStyles, {
+                map: theMap02,
+                name: 'Modified BCN map'
+            });
+
+
+            theMap02.mapTypes.set('modified_bcn_map', styledMapType);
+            theMap02.setMapTypeId('modified_bcn_map');
+
+
+
+            //Save center location
+            // Save the original center
+            var Center = theMap02.getCenter();
+
+           
+
+           // Save the original center
+           var Center = theMap02.getCenter();
+
+            theMap02.addListener("center_changed", () => {
+                // pan back after 3 seconds of center being changed
+                window.setTimeout(() => {
+                    theMap02.panTo(Center);
+                }, 3000);
+            });
+            /*Add markers*/
+            var icon01 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/sagrada03.png';
+            var icon02 = 'https://ces-web2.southwales.ac.uk/students/30047616/GIS/icons/Plane.png'
+            var loc = new google.maps.LatLng(41.403889, 2.176013);
+            var loc02 = new google.maps.LatLng(41.345585, 2.112687);
+
+
+            var mkr1 = createMarker(loc, icon01, '<a href="https://sagradafamilia.org/"> Sagrada familia</a>', theMap02);
+            var mkr2 = createMarker(loc02, icon02, '<a href="https://www.aena.es/es/josep-tarradellas-barcelona-el-prat.html?utm_source=Google&utm_medium=GMB_BCN"> Barcelona El Prat Airport</a>', theMap02);
+
+
+        }
+
+
+
+        window.initMap = initMap;
+
+
+
+
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDotQOsRoXo24UyVNWTVE92XyodSZOgYv4&callback=draw_map"></script>
+
+</body>
+
+</html>
